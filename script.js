@@ -1,53 +1,53 @@
-const scroll = document.getElementById("scroll");
-const iconsContainer = document.getElementById("iconsContainer");
-const mapContainer = document.getElementById("mapContainer");
-const rightContainer = document.getElementById("rightContainer");
-const leftScreen = document.getElementById("leftScreen");
-const rightScreen = document.getElementById("rightScreen");
-const map = document.getElementById("map");
+const scroll = $("#scroll");
+const iconsContainer = $("#iconsContainer");
+const mapContainer = $("#mapContainer");
+const rightContainer = $("#rightContainer");
+const leftScreen = $("#leftScreen");
+const rightScreen = $("#rightScreen");
+const map = $("#map");
 
 init();
 handleScroll();
 
 function init() {
-  scroll.classList.add("scroll-top");
-  leftScreen.classList.add("dark-mode");
-  rightScreen.classList.add("dark-mode");
-  rightContainer.removeChild(mapContainer);
+  scroll.addClass("scroll-top");
+  leftScreen.addClass("dark-mode");
+  rightScreen.addClass("dark-mode");
+  mapContainer.remove();
 }
 
 function handleScroll() {
-  scroll.addEventListener("click", () => {
-    if (scroll.className.includes("scroll-top")) {
-      scroll.classList.remove("scroll-top");
-      scroll.classList.add("scroll-bottom");
+  scroll.on("click", () => {
+    if (scroll.hasClass("scroll-top")) {
+      scroll.removeClass("scroll-top");
+      scroll.addClass("scroll-bottom");
       handleScreenChange();
     } else {
-      scroll.classList.remove("scroll-bottom");
-      scroll.classList.add("scroll-top");
+      scroll.removeClass("scroll-bottom");
+      scroll.addClass("scroll-top");
       handleScreenChange();
     }
   });
 }
 
 function handleScreenChange() {
-  if (rightContainer.contains(iconsContainer)) {
-    iconsContainer.classList.add("fade-in");
-    mapContainer.classList.remove("fade-in");
+  if (rightContainer.has(iconsContainer).length) {
+    iconsContainer.addClass("fade-in");
+    mapContainer.removeClass("fade-in");
     setTimeout(() => {
-      rightContainer.removeChild(iconsContainer);
-      rightContainer.appendChild(mapContainer);
-      rightScreen.classList.remove("dark-mode");
-      rightScreen.classList.add("light-mode");
+      iconsContainer.remove();
+      rightContainer.append(mapContainer);
+      rightScreen.removeClass("dark-mode");
+      rightScreen.removeClass("light-mode");
     }, 200);
   } else {
-    iconsContainer.classList.remove("fade-in");
-    mapContainer.classList.add("fade-in");
+    iconsContainer.removeClass("fade-in");
+    mapContainer.addClass("fade-in");
     setTimeout(() => {
-      rightContainer.removeChild(mapContainer);
-      rightContainer.appendChild(iconsContainer);
-      rightScreen.classList.remove("light-mode");
-      rightScreen.classList.add("dark-mode");
+      mapContainer.remove();
+      rightContainer.append(iconsContainer);
+      rightScreen.removeClass("light-mode");
+      rightScreen.addClass("dark-mode");
     }, 200);
   }
 }
