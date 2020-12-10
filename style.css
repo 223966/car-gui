@@ -18,6 +18,47 @@ html {
   border-radius: 16px;
 }
 
+.screen-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.speed-container {
+  display: grid;
+  gap: 0.5em;
+  grid-template-columns: repeat(6, 1fr);
+  place-items: center;
+  padding: 2em;
+}
+
+.speed-container > div {
+  width: 100%;
+  height: 30px;
+  background-color: #fff;
+}
+
+.speed-container > div:first-child {
+  border-top-left-radius: 16px;
+  border-bottom-left-radius: 16px;
+}
+
+.speed-container > div:last-child {
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.speed-controller {
+  padding: 1em;
+}
+.screen-left > p {
+  color: #fff;
+  font-size: 48px;
+  font-family: "Quantico", sans-serif;
+  margin: 0;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
 .screen-right {
   display: grid;
   grid-template-columns: 5% 1fr;
@@ -94,4 +135,12 @@ html {
 
 .dark-mode {
   background-color: rgb(39, 39, 39);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+input[type="range"] {
+  width: 100%;
 }

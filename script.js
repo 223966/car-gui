@@ -5,9 +5,14 @@ const rightContainer = $("#rightContainer");
 const leftScreen = $("#leftScreen");
 const rightScreen = $("#rightScreen");
 const map = $("#map");
+const speedInput = $("#speedInput");
+const speedContainer = $("#speedContainer");
+
+let speed = $("#speed");
 
 init();
 handleScroll();
+handleSpeedChange();
 
 function init() {
   scroll.addClass("scroll-top");
@@ -49,5 +54,97 @@ function handleScreenChange() {
       rightScreen.removeClass("light-mode");
       rightScreen.addClass("dark-mode");
     }, 200);
+  }
+}
+
+function handleSpeedChange() {
+  speedInput.on("input", (e) => {
+    const previousSpeed = parseInt(speed.text().split(" ")[0]);
+    const isSpeedingUp = previousSpeed < e.target.value;
+    const currentSpeed = e.target.value;
+    speed.text(`${currentSpeed} km/h`);
+
+    if (isSpeedingUp) {
+      handleSpeedingUp(currentSpeed);
+    } else {
+      handleSlowingDown(currentSpeed);
+    }
+  });
+
+  function handleSpeedingUp(currentSpeed) {
+    if (currentSpeed < 50) {
+      speedContainer.find("#1").css("background-color", "green");
+    } else if (currentSpeed > 50 && currentSpeed < 100) {
+      speedContainer.find("#1").css("background-color", "green");
+      speedContainer.find("#2").css("background-color", "green");
+    } else if (currentSpeed > 100 && currentSpeed < 150) {
+      speedContainer.find("#1").css("background-color", "green");
+      speedContainer.find("#2").css("background-color", "green");
+      speedContainer.find("#3").css("background-color", "orange");
+    } else if (currentSpeed > 150 && currentSpeed < 200) {
+      speedContainer.find("#1").css("background-color", "green");
+      speedContainer.find("#2").css("background-color", "green");
+      speedContainer.find("#3").css("background-color", "orange");
+      speedContainer.find("#4").css("background-color", "orange");
+    } else if (currentSpeed > 200 && currentSpeed < 250) {
+      speedContainer.find("#1").css("background-color", "green");
+      speedContainer.find("#2").css("background-color", "green");
+      speedContainer.find("#3").css("background-color", "orange");
+      speedContainer.find("#4").css("background-color", "orange");
+      speedContainer.find("#5").css("background-color", "red");
+    } else if (currentSpeed > 250) {
+      speedContainer.find("#1").css("background-color", "green");
+      speedContainer.find("#2").css("background-color", "green");
+      speedContainer.find("#3").css("background-color", "orange");
+      speedContainer.find("#4").css("background-color", "orange");
+      speedContainer.find("#5").css("background-color", "red");
+      speedContainer.find("#6").css("background-color", "red");
+    }
+  }
+
+  function handleSlowingDown(currentSpeed) {
+    if (currentSpeed < 50) {
+      speedContainer.find("#1").css("background-color", "white");
+      speedContainer.find("#2").css("background-color", "white");
+      speedContainer.find("#3").css("background-color", "white");
+      speedContainer.find("#4").css("background-color", "white");
+      speedContainer.find("#5").css("background-color", "white");
+      speedContainer.find("#6").css("background-color", "white");
+    } else if (currentSpeed > 50 && currentSpeed < 100) {
+      speedContainer.find("#1").css("background-color", "green");
+      speedContainer.find("#2").css("background-color", "white");
+      speedContainer.find("#3").css("background-color", "white");
+      speedContainer.find("#4").css("background-color", "white");
+      speedContainer.find("#5").css("background-color", "white");
+      speedContainer.find("#6").css("background-color", "white");
+    } else if (currentSpeed > 100 && currentSpeed < 150) {
+      speedContainer.find("#1").css("background-color", "green");
+      speedContainer.find("#2").css("background-color", "green");
+      speedContainer.find("#3").css("background-color", "white");
+      speedContainer.find("#4").css("background-color", "white");
+      speedContainer.find("#5").css("background-color", "white");
+      speedContainer.find("#6").css("background-color", "white");
+    } else if (currentSpeed > 150 && currentSpeed < 200) {
+      speedContainer.find("#1").css("background-color", "green");
+      speedContainer.find("#2").css("background-color", "green");
+      speedContainer.find("#3").css("background-color", "orange");
+      speedContainer.find("#4").css("background-color", "white");
+      speedContainer.find("#5").css("background-color", "white");
+      speedContainer.find("#6").css("background-color", "white");
+    } else if (currentSpeed > 200 && currentSpeed < 250) {
+      speedContainer.find("#1").css("background-color", "green");
+      speedContainer.find("#2").css("background-color", "green");
+      speedContainer.find("#3").css("background-color", "orange");
+      speedContainer.find("#4").css("background-color", "orange");
+      speedContainer.find("#5").css("background-color", "white");
+      speedContainer.find("#6").css("background-color", "white");
+    } else if (currentSpeed > 250) {
+      speedContainer.find("#1").css("background-color", "green");
+      speedContainer.find("#2").css("background-color", "green");
+      speedContainer.find("#3").css("background-color", "orange");
+      speedContainer.find("#4").css("background-color", "orange");
+      speedContainer.find("#5").css("background-color", "red");
+      speedContainer.find("#6").css("background-color", "white");
+    }
   }
 }
