@@ -56,7 +56,45 @@ html {
   font-family: "Quantico", sans-serif;
   margin: 0;
   text-align: center;
-  margin-bottom: 100px;
+}
+
+.modes-container {
+  display: flex;
+  text-align: center;
+}
+
+.modes-container > div {
+  height: 50px;
+}
+
+.modes-container > div:hover {
+  cursor: pointer;
+}
+
+.modes-container > div > p {
+  color: #fff;
+  font-size: 18px;
+  font-family: "Quantico", sans-serif;
+  text-align: center;
+  width: 150px;
+  margin: 0;
+}
+
+.sport-mode,
+.eco-mode {
+  background-color: cornflowerblue;
+}
+
+.eco-mode {
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 16px;
+  padding: 2em;
+}
+
+.sport-mode {
+  border-top-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+  padding: 2em;
 }
 
 .screen-right {
@@ -143,4 +181,14 @@ html {
 
 input[type="range"] {
   width: 100%;
+}
+
+.sport-mode-fade-in {
+  background-color: #7a1f26;
+  transition: background-color 0.3s linear;
+}
+
+.eco-mode-fade-in {
+  background-color: #272727;
+  transition: background-color 0.3s linear;
 }

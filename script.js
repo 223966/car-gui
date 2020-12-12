@@ -7,6 +7,8 @@ const rightScreen = $("#rightScreen");
 const map = $("#map");
 const speedInput = $("#speedInput");
 const speedContainer = $("#speedContainer");
+const sportMode = $("#sportMode");
+const ecoMode = $("#ecoMode");
 
 let speed = $("#speed");
 
@@ -148,3 +150,13 @@ function handleSpeedChange() {
     }
   }
 }
+
+sportMode.on("click", () => {
+  leftScreen.removeClass("eco-mode-fade-in");
+  leftScreen.addClass("sport-mode-fade-in");
+});
+
+ecoMode.on("click", () => {
+  leftScreen.removeClass("sport-mode-fade-in");
+  leftScreen.addClass("eco-mode-fade-in");
+});
