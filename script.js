@@ -9,18 +9,33 @@ const speedInput = $("#speedInput");
 const speedContainer = $("#speedContainer");
 const sportMode = $("#sportMode");
 const ecoMode = $("#ecoMode");
+const clock = $("#clock-container");
+const gear = $("#gear");
 
 let speed = $("#speed");
+let time = $("#time");
 
 init();
 handleScroll();
 handleSpeedChange();
 
 function init() {
+  clock.css("font-size", "8px");
+  handleClock();
   scroll.addClass("scroll-top");
   leftScreen.addClass("dark-mode");
   rightScreen.addClass("dark-mode");
   mapContainer.remove();
+}
+
+function handleClock() {
+  const now = new Date();
+  let hour = now.getHours();
+  let minute = now.getMinutes();
+  let second = now.getSeconds();
+  if (minute < 10) minute = `0${minute}`;
+  if (second < 10) second = `0${second}`;
+  time.text(`${hour} : ${minute} : ${second}`), setTimeout(handleClock, 1000);
 }
 
 function handleScroll() {
@@ -64,6 +79,7 @@ function handleSpeedChange() {
     const previousSpeed = parseInt(speed.text().split(" ")[0]);
     const isSpeedingUp = previousSpeed < e.target.value;
     const currentSpeed = e.target.value;
+    currentSpeed == 0 ? gear.text("P") : gear.text("D");
     speed.text(`${currentSpeed} km/h`);
 
     if (isSpeedingUp) {
